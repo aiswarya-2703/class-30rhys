@@ -1,0 +1,30 @@
+class Pig extends BaseClass {
+  constructor(x, y){
+    super(x,y,50,50);
+    this.image = loadImage("sprites/enemy.png");
+    //this.visibility is the alpha value in ,tint(value, [alpha])
+    this.visibility=255;
+  }
+  display(){
+    var pos =this.body.position;
+    //console.log(this.body.speed)
+    //super.display();
+    this.visibility=this.visibility-5;
+
+    if(this.body.speed<3){
+      super.display();
+    }
+    else{
+      World.remove(world, this.body);
+      push();
+      this.visibility=this.visibility-1;
+      tint(255, this.visibility);
+    
+      image(this.image, pos.x, pos.y, 50, 50);
+      //tint(255, this.visibility);
+      pop();
+    
+    }
+  }
+
+};
